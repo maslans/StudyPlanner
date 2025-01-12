@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
 }
-/* Navbar podstawowy */
+
 .navbar {
     display: flex;
     align-items: center;
@@ -93,7 +93,6 @@ body {
     background-color: #ff3333;
 }
 
-/* Menu toggle button */
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -103,7 +102,6 @@ body {
     cursor: pointer;
 }
 
-/* Responsywność */
 @media (max-width: 768px) {
     .menu {
         display: none;
@@ -127,13 +125,13 @@ body {
 }
 
 .menu-container{
-    display: flex; /* Ustawia elementy w jednej linii */
-    align-items: center; /* Wyrównuje elementy pionowo w środku */
-    justify-content: space-between; /* Rozsuwa elementy na całą szerokość */
-    gap: 20px; /* Odstępy między elementami */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     padding: 10px;
     border-radius: 10px;
-    background-color: #f4f4f4; /* Kolor tła dla testu */
+    background-color: #f4f4f4;
 }
 .footer {
     background-color: #333;
@@ -205,7 +203,6 @@ body {
     border-color: #4caf50; 
 } 
 
-/* Przyciski */
 .my_btn {
     background-color: #4caf50;
     color: white;
@@ -218,19 +215,16 @@ body {
     transition: background-color 0.3s ease;
 }
 
-/* Efekt hover dla przycisku */
 .my_btn:hover {
     background-color: #45a049;
 }
 
-/* Błędy pól formularza */
 .error {
     color: #ff5555;
     font-size: 12px;
     margin-top: 5px;
 }
 
-/* Podsumowanie błędów */
 .error-summary {
     background-color: #ffe6e6;
     color: #d8000c;
@@ -247,52 +241,44 @@ body {
     padding: 5px;
 }
 
-
-/* Kontener strony (tło, wyśrodkowanie) */
 .container-logged {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Cała wysokość okna przeglądarki */
+    min-height: 100vh;
     box-sizing: border-box;
 }
 
-/* Główny kontener treści */
 .main-logged {
     background-color: #ffffff;
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;  /* Maksymalna szerokość */
+    max-width: 400px; 
     text-align: center;
-    position: relative; /* umożliwia wyrównanie paska wewnątrz */
+    position: relative; 
 }
 
-/* Pasek u góry (np. "Logged out") */
+
 .head-logged {
     background-color: #4caf50; 
     color: #fff;
     height: 30px;
-    line-height: 30px;     /* pionowe wyśrodkowanie tekstu */
-    text-align: center;    /* poziome wyśrodkowanie tekstu */
-    border-radius: 8px 8px 0 0; /* zaokrąglenie górnych rogów, jeśli pasuje do designu */
+    line-height: 30px; 
+    text-align: center;
+    border-radius: 8px 8px 0 0; 
     margin: -20px -30px 20px -30px; 
-    /* Powód tych ujemnych marginesów: 
-       jeśli chcesz, by zielony pasek ładnie „wyszedł” poza obszar białego kontenera 
-       i łączył się z krawędziami. Dostosuj w razie potrzeby. */
 }
 
-/* Nagłówek wewnątrz main-logged, np. "You have been logged out" */
 .main-logged h2 {
     font-size: 24px;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Stylowanie linku jak przycisk (np. "Back to home page") */
 .main-logged a {
     display: inline-block;
     text-decoration: none;
@@ -304,7 +290,6 @@ body {
     transition: background-color 0.3s ease;
 }
 
-/* Efekt hover dla przycisku */
 .main-logged a:hover {
     background-color: #45a049;
 }
