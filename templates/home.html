@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-3">
+    <div class="row g-4">
+        <div class="col-md-6 d-flex">
+            <div class="card bg-light text-dark w-100 h-100">
+                <div class="card-header">
+                    <h5>Upcoming Tests and Exams</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card bg-warning text-dark sticky-note">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">Tests</h6>
+                                    <a href="{% url 'tests' %}" class="btn btn-success btn-sm p-0 px-2">Go to tests</a>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        {% for test in tests %}
+                                        <li>Test with {{test.subject}} - {{test.due_date|date:"d.m.Y"}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-warning text-dark sticky-note">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">Exams</h6>
+                                    <a href="{% url 'exams' %}" class="btn btn-success btn-sm p-0 px-2">Go to exams</a>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        {% for exam in exams %}
+                                        <li>Exam with {{exam.subject}} - {{exam.due_date|date:"d.m.Y"}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="card bg-light border-info w-100 h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>User Information</h5>
+                    <a href="{% url 'profile' %}" class="btn btn-primary btn-sm p-0 px-2">Go to edit profile</a>
+                </div>
+                <div class="card-body">
+                    <p><strong>Name and Surname:</strong> {{user_data.first_name}} {{user_data.last_name}}</p>
+                    <p><strong>Email:</strong> {{user_data.email}}</p>
+                    <p><strong>School:</strong> {{user_data.school}}</p>
+                    <p><strong>Field of Study:</strong> {{user_data.field_of_study}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="card bg-light text-dark w-100 h-100">
+                <div class="card-header">
+                    <h5>Upcoming Tasks</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="card bg-warning text-dark sticky-note">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">Tasks</h6>
+                                    <a href="{% url 'tasks' %}" class="btn btn-success btn-sm p-0 px-2">Go to tasks</a>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        {% for task in tasks %}
+                                        <li>Task with {{task.subject}} - {{task.due_date|date:"d.m.Y"}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex">
+            <div class="card bg-light border-primary w-100 h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>Chat</h5>
+                    <p>{{user_data.school}}</p>
+                </div>
+                <div class="card-body">
+                    <div id="chat-box" class="chat-box"
+                        style="height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+
+                    </div>
+                    <div class="mt-3">
+                        <form id="chat-form" method="post">
+                            {% csrf_token %}
+                            <input type="text" id="chat-input" class="form-control" placeholder="Wpisz wiadomość">
+                            <button class="btn btn-primary mt-2" type="submit">Wyślij</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function loadMessages() {
+        fetch('/messages/get/')
+            .then(response => response.json())
+            .then(data => {
+                const chatBox = document.getElementById('chat-box');
+                chatBox.innerHTML = '';
+                data.messages.forEach(message => {
+                    chatBox.innerHTML += `<p><strong>${message.user}:</strong> ${message.content} <small class="text-muted">(${message.timestamp})</small></p>`;
+                });
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+    }
+
+    document.getElementById('chat-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const chatInput = document.getElementById('chat-input');
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        fetch('/messages/send/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrfToken
+            },
+            body: `content=${chatInput.value}`
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    chatInput.value = '';
+                    loadMessages();
+                }
+            });
+    });
+
+    setInterval(loadMessages, 2000);
+    loadMessages();
+</script>
+
+{% endblock %}

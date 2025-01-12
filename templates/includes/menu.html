@@ -1,0 +1,43 @@
+<div class="navbar">
+    <div class="brand">Study Planner</div>
+    
+    <div class="menu">
+        {% if user.is_authenticated %}
+            <a href="/" >Home</a>
+            <a href="{% url 'tasks' %}" >Tasks</a>
+            <a href="{% url 'tests' %}" >Tests</a>
+            <a href="{% url 'exams' %}" >Exams</a>
+            <a href="{% url 'subjects' %}" >Subjects</a>
+        {% endif %}
+    </div>
+    <div class="menu-container">
+        <div class="auth-menu">
+            {% if user.is_authenticated %}
+                <div class="profile-menu">
+                    <a href="{% url 'profile' %}" class="profile-icon">
+                        <span class="profile-placeholder"><i class="fa-solid fa-user user-icon"></i></span>Profile
+                    </a>
+                </div>
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="menu-base btn btn-success">Login</a>
+                <a href="{% url 'register' %}" class="menu-base btn btn-danger">Register</a>
+            {% endif %}
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".menu");
+
+    menuToggle.addEventListener("click", () => {
+        menu.classList.toggle("active");
+    });
+});
+</script>

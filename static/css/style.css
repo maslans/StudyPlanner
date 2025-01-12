@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+/* Navbar podstawowy */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+    font-weight: 700;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.menu a:hover,
+.menu a.active {
+    background-color: #575757;
+}
+
+.auth-menu {
+    display: flex;
+    align-items: center;
+    color: black !important;
+    gap: 20px;
+}
+
+.profile-icon {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.btn-logout {
+    background-color: #ff5555;
+    color: black;
+    font-weight: 700;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu-base{
+    color: black;
+    font-weight: 700;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu-base-login{
+    background-color: #45a049;
+}
+
+.menu-base-register{
+    background-color: lightsalmon;
+}
+
+.btn-logout:hover {
+    background-color: #ff3333;
+}
+
+/* Menu toggle button */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        padding: 10px 20px;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+.menu-container{
+    display: flex; /* Ustawia elementy w jednej linii */
+    align-items: center; /* Wyrównuje elementy pionowo w środku */
+    justify-content: space-between; /* Rozsuwa elementy na całą szerokość */
+    gap: 20px; /* Odstępy między elementami */
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f4f4f4; /* Kolor tła dla testu */
+}
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    width: 100%;
+    position: relative;
+    height: 7vh;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.container-form {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+}
+
+.main-form{
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; 
+    text-align: center;
+}
+
+.register-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #4caf50; 
+} 
+
+/* Przyciski */
+.my_btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+/* Efekt hover dla przycisku */
+.my_btn:hover {
+    background-color: #45a049;
+}
+
+/* Błędy pól formularza */
+.error {
+    color: #ff5555;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Podsumowanie błędów */
+.error-summary {
+    background-color: #ffe6e6;
+    color: #d8000c;
+    padding: 10px;
+    border: 1px solid #d8000c;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.user-icon {
+    font-size: 20px !important;
+    padding: 5px;
+}
+
+
+/* Kontener strony (tło, wyśrodkowanie) */
+.container-logged {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Cała wysokość okna przeglądarki */
+    box-sizing: border-box;
+}
+
+/* Główny kontener treści */
+.main-logged {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;  /* Maksymalna szerokość */
+    text-align: center;
+    position: relative; /* umożliwia wyrównanie paska wewnątrz */
+}
+
+/* Pasek u góry (np. "Logged out") */
+.head-logged {
+    background-color: #4caf50; 
+    color: #fff;
+    height: 30px;
+    line-height: 30px;     /* pionowe wyśrodkowanie tekstu */
+    text-align: center;    /* poziome wyśrodkowanie tekstu */
+    border-radius: 8px 8px 0 0; /* zaokrąglenie górnych rogów, jeśli pasuje do designu */
+    margin: -20px -30px 20px -30px; 
+    /* Powód tych ujemnych marginesów: 
+       jeśli chcesz, by zielony pasek ładnie „wyszedł” poza obszar białego kontenera 
+       i łączył się z krawędziami. Dostosuj w razie potrzeby. */
+}
+
+/* Nagłówek wewnątrz main-logged, np. "You have been logged out" */
+.main-logged h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Stylowanie linku jak przycisk (np. "Back to home page") */
+.main-logged a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Efekt hover dla przycisku */
+.main-logged a:hover {
+    background-color: #45a049;
+}
